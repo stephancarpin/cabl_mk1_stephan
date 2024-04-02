@@ -1,0 +1,3 @@
+Source folder for nanomsgxx:
+- nnxx: subfolder containing all source files
+- ext: C extensions to the nanomsg library

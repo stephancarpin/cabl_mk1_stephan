@@ -1,0 +1,15 @@
+[submodule "modules/catch"]
+	path = modules/catch
+	url = https://github.com/philsquared/catch.git
+[submodule "modules/unmidify"]
+	path = modules/unmidify
+	url = https://github.com/shaduzlabs/unmidify.git
+[submodule "modules/cereal"]
+	path = modules/cereal
+	url = https://github.com/USCiLab/cereal.git
+[submodule "modules/nanomsg"]
+	path = modules/nanomsg
+	url = https://github.com/nanomsg/nanomsg.git
+[submodule "modules/nanomsgxx"]
+	path = modules/nanomsgxx
+	url = https://github.com/shaduzlabs/nanomsgxx.git

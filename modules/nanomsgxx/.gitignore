@@ -1,0 +1,41 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Waf
+.waf*
+.lock*
+build/*
+
+# Emacs
+*~
+\#*\#
+
+# Doc
+doc/*.gz
+doc/*.html
+doc/*.[1-9]
+doc/nnxx/*.gz
+doc/nnxx/*.html
+doc/nnxx/*.[1-9]
+doc/nanomsgxx/*.gz
+doc/nanomsgxx/*.html
+doc/nanomsgxx/*.[1-9]
