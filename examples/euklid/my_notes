@@ -226,6 +226,30 @@ Attempting to pair with 54:E4:FB:7D:36:B6
 [CHG] Device 8C:FA:BA:4B:BF:14 AddressType: public
 [CHG] Device 8C:FA:BA:4B:BF:14 Paired: yes
 Pairing successful
+
+
+
+
+
+
+
+
+
+
+Result done
+client 0: 'System' [type=kernel]
+    0 'Timer           '
+    1 'Announce        '
+client 14: 'Midi Through' [type=kernel]
+    0 'Midi Through Port-0'
+client 128: 'Cubasis ble' [type=user,pid=2570]
+    0 'Cubasis ble Bluetooth'
+client 129: 'RtMidi Output Client' [type=user,pid=4271]
+    0 'Euklid   
+
+
+Yuahhhh
+thanks to Mr kendall
 [NEW] Device D0:3C:1F:18:86:AB EQ-EQ6297721
 [CHG] Device 8C:FA:BA:4B:BF:14 ServicesResolved: no
 [CHG] Device 8C:FA:BA:4B:BF:14 Connected: no
