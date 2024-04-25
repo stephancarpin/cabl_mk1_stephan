@@ -22,6 +22,7 @@ https://github.com/dodgyrabbit/midi-ble-bridge/blob/master/gatt-example/gatt_ser
                   Agent registered
                   connmanctl> <b>connect wifi_1234567890_1234567890123456_managed_psk&#x23CE;</b>
     ssh-keygen -R 192.168.7.2
+     ssh-keygen -t ed25519 -C "BBB_new"
     - sudo apt update && sudo apt upgrade
 2. install midi-ble-brigde
    add --experimental to /etc/systemd/system/blueetoh want/bluetooth services
