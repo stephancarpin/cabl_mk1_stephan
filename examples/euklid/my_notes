@@ -24,6 +24,9 @@ https://github.com/dodgyrabbit/midi-ble-bridge/blob/master/gatt-example/gatt_ser
     ssh-keygen -R 192.168.7.2
      ssh-keygen -t ed25519 -C "BBB_new"
     - sudo apt update && sudo apt upgrade
+#install cabl for maschine
+1. git clone git@github.com:stephancarpin/cabl_mk1_stephan.git
+2.  git clone https://github.com/dodgyrabbit/midi-ble-bridge.git
 2. install midi-ble-brigde
    add --experimental to /etc/systemd/system/blueetoh want/bluetooth services
 3. using mido library (check if compatible with python 2.7)(dbus issue attention)
