@@ -30,4 +30,4 @@ https://github.com/dodgyrabbit/midi-ble-bridge/blob/master/gatt-example/gatt_ser
 2. install midi-ble-brigde
    add --experimental to /etc/systemd/system/blueetoh want/bluetooth services
 3. using mido library (check if compatible with python 2.7)(dbus issue attention)
-3. install cal_stephan github
+
