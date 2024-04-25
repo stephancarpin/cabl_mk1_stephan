@@ -5,3 +5,16 @@
   Bus 001 Device 005: ID 194f:0103  presonus
   # blueetoh
    sudo hcitool lescan
+
+apt --fix-broken install dont used this for python
+sudo apt update && sudo apt upgrade
+sudo apt install cmake
+
+##install lation plan
+https://github.com/dodgyrabbit/midi-ble-bridge/blob/master/gatt-example/gatt_server.py
+1. used debian buster image beagle bone the other new one does not work preoperly
+- sudo apt update && sudo apt upgrade
+2. install midi-ble-brigde
+   add --experimental to /etc/systemd/system/blueetoh want/bluetooth services
+3. using mido library (check if compatible with python 2.7)(dbus issue attention)
+3. install cal_stephan github
