@@ -1,4 +1,5 @@
- sudo ifconfig wlan0 down && sudo ifconfig wlan0 up
+bone-eMMC-flasher-debian-10.3-iot-armhf-2020-04-06-4gb.img
+sudo ifconfig wlan0 down && sudo ifconfig wlan0 up
  sudo wavemon
   sudo systemctl daemon-reload
   sudo systemctl restart connman.service
