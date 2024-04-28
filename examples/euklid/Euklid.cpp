@@ -76,7 +76,7 @@ Euklid::Euklid()
   , m_delayEven(125)
   , m_delayOdd(125)
   ,valuePads(0)
-  ,DEBOUNCE(60)
+  ,DEBOUNCE(40)
  
   
 {
@@ -274,303 +274,297 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
   // auto duration_in_sec= std::chrono::duration<double>(nowz.time_since_epoch());
   // double now = duration_in_sec.count;
   
-if (millisz() - lastEvent[index_] > DEBOUNCE)
- {
-   //std::cout << "indexPads : " << (int)index_ << "  value : "<<(double)value_  << std::endl;
-
-
-  //not active
-    
-     if( !activePads[index_]){  
-        if( value_ > findmax[index_]  )
-        {
-          
-            findmax[index_] = value_;
-            //std::cout << "Peak high : " << findmax[index_]  << std::endl;
-            
-        
-          
-        } else {
-          
-             peak[index_]      = true;
-            
-        }
-        
-   
-    
-    
-    
-        if( peak[index_] )
-        {
-          
-            
-             
-            switch (int(index_))
-            	{
-            	  case 0:
-              	{
-                		indexPads = (unsigned char)48;
-                		break;
-              	}
-              	case 1:
-              	{
-                		indexPads = (unsigned char)49;
-                		break;
-              	}
-              	case 2:
-              	{
-                		indexPads = (unsigned char)48;
-                		break;
-              	}
-              	case 3:
-              	{
-                		indexPads = (unsigned char)47;
-                		break;
-              	}
-            	  case 4:
-              	{
-                		indexPads = (unsigned char)46;
-                		break;
-              	}
-              	case 5:
-              	{
-                		indexPads = (unsigned char)44;
-                		break;
-              	}
-              	case 6:
-              	{
-                		indexPads = (unsigned char)45;
-              	}
-              	case 7:
-              	{
-                		indexPads = (unsigned char)46;
-                		break;
-              	}
-            	  case 8:
-              	{
-                		indexPads = (unsigned char)47;
-                		break;
-              	}
-              	case 9:
-              	{
-                		indexPads = (unsigned char)41;
-                		break;
-              	}
-              	case 10:
-              	{
-                		indexPads = (unsigned char)42;
-                		break;
-              	}
-              	case 11:
-              	{
-                		indexPads = (unsigned char)43;
-                		break;
-              	}
-              	case 12:
-              	{
-                		indexPads = (unsigned char)36;
-                		
-                		break;
-              	}
-              	case 13:
-              	{
-                		indexPads = (unsigned char)37;
-                		break;
-              	}
-              	case 14:
-              	{
-                		indexPads = (unsigned char)38;
-                		break;
-              	}
-              	case 15:
-              	{
-                		indexPads = (unsigned char)39;
-                		break;
-              	}
-            	 } 
-             activePads[index_] = true;
-            //Control Change: 176, 7, 100 (volume)
-            valuePads    =  (value_*127.0);
-             
-    	       ctrl_change  =  {144,indexPads,valuePads};
-    	       
-    	       m_pMidiout->sendMessage(&ctrl_change);
-    	
-          	
-          	   //  std::cout <<"------------------------ " << (int)index_  << std::endl;
-          	   std::cout << "Midi sent on: " << (int)index_  << std::endl;
-          	 	//  std::cout << "peak[index_] " << peak[index_] << std::endl;
-          	 	 // std::cout << "peak_low[index_] " << peak_low[index_] << std::endl;
-          	 	//  std::cout << "activePads[index_]" << activePads[index_] << std::endl;
-          	 
-          	 findmax[index_]   = 0;
-          	 
-              peak[index_]          = false;
-              peak_low[index_]      = false;
-              //activePads[index_]    = false;
-             
-          	 lastEvent[index_] = millisz();
-          	
-          
-        }
-    
-  }
-  
-  
- }
-  //active
-  if( activePads[index_]){  
-    
-    
-    if(value_ ==  0  )
-    {
-      peak_low[index_]= true;
-
-      //std::cout <<" " << std::endl;
-      //std::cout << "peak_low from actiove: " << value_  << std::endl;
-    }
-    
-    // if(value_ >0.002)
-    // {
-    //       valuePads    =  (value_*127.0);
-    //   //std::cout << "sends after touch" << value_  << std::endl;//160 key pressuire
-    //   	ctrl_change =  {	160,indexPads,valuePads};
-    //     m_pMidiout->sendMessage(&ctrl_change);
-       	  
-      
-    // }
-    
-    
-    
-    
-    if( peak_low[index_])
-    {
-      
-        
-         
-        switch (int(index_))
-        	{
-        	  case 0:
-          	{
-            		indexPads = (unsigned char)48;
-            		break;
-          	}
-          	case 1:
-          	{
-            		indexPads = (unsigned char)49;
-            		break;
-          	}
-          	case 2:
-          	{
-            		indexPads = (unsigned char)48;
-            		break;
-          	}
-          	case 3:
-          	{
-            		indexPads = (unsigned char)47;
-            		break;
-          	}
-        	  case 4:
-          	{
-            		indexPads = (unsigned char)46;
-            		break;
-          	}
-          	case 5:
-          	{
-            		indexPads = (unsigned char)44;
-            		break;
-          	}
-          	case 6:
-          	{
-            		indexPads = (unsigned char)45;
-          	}
-          	case 7:
-          	{
-            		indexPads = (unsigned char)46;
-            		break;
-          	}
-        	  case 8:
-          	{
-            		indexPads = (unsigned char)47;
-            		break;
-          	}
-          	case 9:
-          	{
-            		indexPads = (unsigned char)41;
-            		break;
-          	}
-          	case 10:
-          	{
-            		indexPads = (unsigned char)42;
-            		break;
-          	}
-          	case 11:
-          	{
-            		indexPads = (unsigned char)43;
-            		break;
-          	}
-          	case 12:
-          	{
-            		indexPads = (unsigned char)36;
-            		
-            		break;
-          	}
-          	case 13:
-          	{
-            		indexPads = (unsigned char)37;
-            		break;
-          	}
-          	case 14:
-          	{
-            		indexPads = (unsigned char)38;
-            		break;
-          	}
-          	case 15:
-          	{
-            		indexPads = (unsigned char)39;
-            		break;
-          	}
-        	 } 
-        
-     
-      	   
-      	 	  
-      	  	ctrl_change =  {128,indexPads,0};
-         	  m_pMidiout->sendMessage(&ctrl_change);
-       	  
-        	  findmax[index_]   = 0;
-      	 
-            peak[index_]          = false;
-            peak_low[index_]      = false;
-            activePads[index_]    = false;
-            
-      	    std::cout << "OFFFF       "<< std::endl;
-      	 	  //std::cout << "peak[index_]        " << peak[index_] << std::endl;
-      	 	  //std::cout << "peak_low[index_]    " << peak_low[index_] << std::endl;
-      	 	  //std::cout << "activePads[index_]  " << activePads[index_] << std::endl;
-      	 	  
-         
-      	 lastEvent[index_] = millisz();
-      	
-      
-    }
-    
-  }
-
+     if (millisz() - lastEvent[index_] > DEBOUNCE) {
  
   
+
+
+
+              //not active
+                if( !activePads[index_] && value_ >0.3) {  
+                    if( value_ > findmax[index_] &&  peak[index_] == false )
+                    {
+                      
+                        findmax[index_] = value_;
+                       // std::cout << "Peak high : " << findmax[index_]  << std::endl;
+                        std::cout << "indexPads : " << (int)index_ << "  value : "<<(double)value_  << std::endl;
+                        
+                    
+                      
+                    } else {
+                      
+                         peak[index_]      = true;
+                        
+                    }
+                    
+               
+                
+                
+                
+                    if( peak[index_] )
+                    {
+                      
+                        
+                         
+                        switch (int(index_))
+                        	{
+                        	  case 0:
+                          	{
+                            		indexPads = (unsigned char)48;
+                            		break;
+                          	}
+                          	case 1:
+                          	{
+                            		indexPads = (unsigned char)49;
+                            		break;
+                          	}
+                          	case 2:
+                          	{
+                            		indexPads = (unsigned char)50;
+                            		break;
+                          	}
+                          	case 3:
+                          	{
+                            		indexPads = (unsigned char)51;
+                            		break;
+                          	}
+                        	  case 4:
+                          	{
+                            		indexPads = (unsigned char)44;
+                            		break;
+                          	}
+                          	case 5:
+                          	{
+                            		indexPads = (unsigned char)45;
+                            		break;
+                          	}
+                          	case 6:
+                          	{
+                            		indexPads = (unsigned char)46;
+                          	}
+                          	case 7:
+                          	{
+                            		indexPads = (unsigned char)47;
+                            		break;
+                          	}
+                        	  case 8:
+                          	{
+                            		indexPads = (unsigned char)40;
+                            		break;
+                          	}
+                          	case 9:
+                          	{
+                            		indexPads = (unsigned char)41;
+                            		break;
+                          	}
+                          	case 10:
+                          	{
+                            		indexPads = (unsigned char)42;
+                            		break;
+                          	}
+                          	case 11:
+                          	{
+                            		indexPads = (unsigned char)43;
+                            		break;
+                          	}
+                          	case 12:
+                          	{
+                            		indexPads = (unsigned char)36;
+                            		
+                            		break;
+                          	}
+                          	case 13:
+                          	{
+                            		indexPads = (unsigned char)37;
+                            		break;
+                          	}
+                          	case 14:
+                          	{
+                            		indexPads = (unsigned char)38;
+                            		break;
+                          	}
+                          	case 15:
+                          	{
+                            		indexPads = (unsigned char)39;
+                            		break;
+                          	}
+                        	 } 
+                         activePads[index_] = true;
+                        //Control Change: 176, 7, 100 (volume)
+                        valuePads    =  ((value_+0.4)*127.0);
+                        if(valuePads >= 127){
+                          valuePads= 127;
+                        }
+                         
+                	       ctrl_change  =  {144,indexPads,valuePads};
+                	       
+                	       m_pMidiout->sendMessage(&ctrl_change);
+                	
+                      	
+                      	   //  std::cout <<"------------------------ " << (int)index_  << std::endl;
+                      	   std::cout << "Midi sent on: " << (int)index_ << ":"<< valuePads << std::endl;
+                      	 //	 std::cout << "valuePads " << valuePads << std::endl;
+                      	 	 // std::cout << "peak_low[index_] " << peak_low[index_] << std::endl;
+                      	 	//  std::cout << "activePads[index_]" << activePads[index_] << std::endl;
+                      	 
+                      	 findmax[index_]   = 0;
+                      	 
+                          peak[index_]          = false;
+                          peak_low[index_]      = false;
+                          //activePads[index_]    = false;
+                         
+                      	 lastEvent[index_] = millisz();
+                      	
+                      
+                    }
+                
+              }
+               //active
+           
+           
+                if( activePads[index_]){  
+                  
+                  
+                  if(value_ == 0  )
+                  {
+                    peak_low[index_]= true;
+                 
+              
+                    //std::cout <<" " << std::endl;
+                    //std::cout << "peak_low from actiove: " << value_  << std::endl;
+                  }
+                  
+                  // if(value_ >0.002)
+                  // {
+                  //       valuePads    =  (value_*127.0);
+                  //   //std::cout << "sends after touch" << value_  << std::endl;//160 key pressuire
+                  //   	ctrl_change =  {	160,indexPads,valuePads};
+                  //     m_pMidiout->sendMessage(&ctrl_change);
+                     	  
+                    
+                  // }
+                  
+                  
+                  
+                  
+                  if( peak_low[index_])
+                  {
+                    
+                      
+                       
+                       switch (int(index_))
+                          	{
+                          	  case 0:
+                            	{
+                              		indexPads = (unsigned char)48;
+                              		break;
+                            	}
+                            	case 1:
+                            	{
+                              		indexPads = (unsigned char)49;
+                              		break;
+                            	}
+                            	case 2:
+                            	{
+                              		indexPads = (unsigned char)50;
+                              		break;
+                            	}
+                            	case 3:
+                            	{
+                              		indexPads = (unsigned char)51;
+                              		break;
+                            	}
+                          	  case 4:
+                            	{
+                              		indexPads = (unsigned char)44;
+                              		break;
+                            	}
+                            	case 5:
+                            	{
+                              		indexPads = (unsigned char)45;
+                              		break;
+                            	}
+                            	case 6:
+                            	{
+                              		indexPads = (unsigned char)46;
+                            	}
+                            	case 7:
+                            	{
+                              		indexPads = (unsigned char)47;
+                              		break;
+                            	}
+                          	  case 8:
+                            	{
+                              		indexPads = (unsigned char)40;
+                              		break;
+                            	}
+                            	case 9:
+                            	{
+                              		indexPads = (unsigned char)41;
+                              		break;
+                            	}
+                            	case 10:
+                            	{
+                              		indexPads = (unsigned char)42;
+                              		break;
+                            	}
+                            	case 11:
+                            	{
+                              		indexPads = (unsigned char)43;
+                              		break;
+                            	}
+                            	case 12:
+                            	{
+                              		indexPads = (unsigned char)36;
+                              		
+                              		break;
+                            	}
+                            	case 13:
+                            	{
+                              		indexPads = (unsigned char)37;
+                              		break;
+                            	}
+                            	case 14:
+                            	{
+                              		indexPads = (unsigned char)38;
+                              		break;
+                            	}
+                            	case 15:
+                            	{
+                              		indexPads = (unsigned char)39;
+                              		break;
+                            	}
+                          	 } 
+                   
+                    	   
+                    	 	  
+                    	  	ctrl_change =  {128,indexPads,0};
+                       	  m_pMidiout->sendMessage(&ctrl_change);
+                     	  
+                      	  findmax[index_]   = 0;
+                    	 
+                          peak[index_]          = false;
+                          peak_low[index_]      = false;
+                          activePads[index_]    = false;
+                          
+                    	    std::cout << "OFFFF       "<< std::endl;
+                    	 	  //std::cout << "peak[index_]        " << peak[index_] << std::endl;
+                    	 	  //std::cout << "peak_low[index_]    " << peak_low[index_] << std::endl;
+                    	 	  //std::cout << "activePads[index_]  " << activePads[index_] << std::endl;
+                    	 	  
+                       
+                    	 lastEvent[index_] = millisz();
+                    	
+                    
+                  }
+                  
+                }
+      }
+ // requestDeviceUpdate();
   
-    
-    
-   
-    
 
- //  requestDeviceUpdate();
-
-    
    
- 
-}  
+}
 
 //--------------------------------------------------------------------------------------------------
 
