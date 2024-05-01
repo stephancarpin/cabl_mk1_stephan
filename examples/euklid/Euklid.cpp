@@ -52,7 +52,9 @@ const sl::Color kEuklidColor_Step_Empty(35, 35, 35, 20);
 const sl::Color kEuklidColor_Step_Empty_Current(127, 127, 127, 50);
 }
 
-// This function should be embedded in a try/catch block in case of
+// This function should
+
+//be embedded in a try/catch block in case of
 // an exception.  It offers the user a choice of MIDI ports to open.
 // It returns false if there are no ports available.
 
@@ -76,7 +78,7 @@ Euklid::Euklid()
   , m_delayEven(125)
   , m_delayOdd(125)
   ,valuePads(0)
-  ,DEBOUNCE(40)
+  ,DEBOUNCE(100)
  
   
 {
@@ -267,7 +269,7 @@ void Euklid::buttonChanged(Device::Button button_, bool buttonState_, bool shift
 void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
 {
 
-  //std::cout << "button value: "<<(value_*127) << std::endl;
+  //std::cout << "indexPads : " << (int)index_ << "value: "<<int(value_*127) << std::endl;
 
   //static auto lastEvent[] = std::chrono::system_clock::now();
   // auto nowz = std::chrono::system_clock::now();
@@ -281,13 +283,13 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
 
 
               //not active
-                if( !activePads[index_] && value_ >0.3) {  
+                if( !activePads[index_] ) {  
                     if( value_ > findmax[index_] &&  peak[index_] == false )
                     {
                       
                         findmax[index_] = value_;
                        // std::cout << "Peak high : " << findmax[index_]  << std::endl;
-                        std::cout << "indexPads : " << (int)index_ << "  value : "<<(double)value_  << std::endl;
+                        std::cout << "FindMax ------indexPads : " << (int)index_ << "  value : "<<(double)value_  << std::endl;
                         
                     
                       
@@ -402,14 +404,14 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
                 	
                       	
                       	   //  std::cout <<"------------------------ " << (int)index_  << std::endl;
-                      	   std::cout << "Midi sent on: " << (int)index_ << ":"<< valuePads << std::endl;
+                      	   std::cout << "Midi sent on: " << (int)index_ << ":"<< (int)valuePads << std::endl;
                       	 //	 std::cout << "valuePads " << valuePads << std::endl;
                       	 	 // std::cout << "peak_low[index_] " << peak_low[index_] << std::endl;
                       	 	//  std::cout << "activePads[index_]" << activePads[index_] << std::endl;
                       	 
                       	 findmax[index_]   = 0;
                       	 
-                          peak[index_]          = false;
+                          //peak[index_]          = false;
                           peak_low[index_]      = false;
                           //activePads[index_]    = false;
                          
@@ -425,7 +427,7 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
                 if( activePads[index_]){  
                   
                   
-                  if(value_ == 0  )
+                  if(value_ <= 0.1)//8888888888888888888888888888888888gdgdgdggdgdg here man
                   {
                     peak_low[index_]= true;
                  
@@ -450,9 +452,7 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
                   if( peak_low[index_])
                   {
                     
-                      
-                       
-                       switch (int(index_))
+                      switch (int(index_))
                           	{
                           	  case 0:
                             	{
@@ -544,16 +544,16 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
                       	  findmax[index_]   = 0;
                     	 
                           peak[index_]          = false;
-                          peak_low[index_]      = false;
+                         // peak_low[index_]      = false;
                           activePads[index_]    = false;
                           
-                    	    std::cout << "OFFFF       "<< std::endl;
+                    	    std::cout << "Send OFFFF       "<< std::endl;
                     	 	  //std::cout << "peak[index_]        " << peak[index_] << std::endl;
                     	 	  //std::cout << "peak_low[index_]    " << peak_low[index_] << std::endl;
                     	 	  //std::cout << "activePads[index_]  " << activePads[index_] << std::endl;
                     	 	  
                        
-                    	 lastEvent[index_] = millisz();
+                    //	 lastEvent[index_] = millisz();
                     	
                     
                   }
