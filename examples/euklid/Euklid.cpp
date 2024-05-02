@@ -78,7 +78,7 @@ Euklid::Euklid()
   , m_delayEven(125)
   , m_delayOdd(125)
   ,valuePads(0)
-  ,DEBOUNCE(80)
+  ,DEBOUNCE(40)
  
   
 {
@@ -392,12 +392,8 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
                       peak_low[index_]      = false;
                       activePads[index_]    = false;
                       
-                	    std::cout << "Send OFFFF       "<< std::endl;
-                	 	  //std::cout << "peak[index_]        " << peak[index_] << std::endl;
-                	 	  //std::cout << "peak_low[index_]    " << peak_low[index_] << std::endl;
-                	 	  //std::cout << "activePads[index_]  " << activePads[index_] << std::endl;
-                	 	  
-                   
+                	   // std::cout << "Send OFFFF       "<< std::endl;
+                	 	 
                 	    lastEvent[index_] = millisz();
                     	
                  
@@ -412,8 +408,8 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
                     {
                       
                         findmax[index_] = value_;
-                       // std::cout << "Peak high : " << findmax[index_]  << std::endl;
-                        std::cout << "FindMax ------indexPads : " << (int)index_ << "  value : "<<(double)value_  << std::endl;
+                       
+                       // std::cout << "FindMax ------indexPads : " << (int)index_ << "  value : "<<(double)value_  << std::endl;
                         
                     
                       
@@ -504,8 +500,8 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
                           	}
                         	 } 
                      
-                        //Control Change: 176, 7, 100 (volume)
-                        valuePads    =  ((value_+0.2)*127.0);
+                 
+                        valuePads    =  ((findmax[index_])*127.0);
                         
                         if(valuePads >= 127)
                         {
@@ -517,13 +513,9 @@ void Euklid::keyChanged(unsigned index_, double value_, bool shiftPressed_)
                 	        m_pMidiout->sendMessage(&ctrl_change);
                 	
                       	
-                      	   //  std::cout <<"------------------------ " << (int)index_  << std::endl;
-                      	   std::cout << "Midi sent on: " << (int)index_ << ":"<< (int)valuePads  <<" value: "<<(double)value_  << std::endl;
-                      	 //	 std::cout << "valuePads " << valuePads << std::endl;
-                      	 	 // std::cout << "peak_low[index_] " << peak_low[index_] << std::endl;
-                      	 	//  std::cout << "activePads[index_]" << activePads[index_] << std::endl;
+                      	  
+                      	  // std::cout << "Midi sent on: " << (int)index_ << ":"<< (int)valuePads  <<" value: "<<(double)value_  << std::endl;
                       	 
-                      	 // findmax[index_]       = 0;
                       	 
                           activePads[index_]    = true;
                          
